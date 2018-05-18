@@ -1,9 +1,11 @@
 import json
+
 import pytest
 
-from thisdayinmusic.models import User
 from thisdayinmusic.app import create_app
 from thisdayinmusic.extensions import db as _db
+from thisdayinmusic.models import User
+from thisdayinmusic.models.artist import Artist
 
 
 @pytest.fixture
@@ -37,6 +39,16 @@ def admin_user(db):
     db.session.commit()
 
     return user
+
+
+@pytest.fixture
+def artist(db):
+    created_artist = Artist(name='some name', spotify_id='some spotify id')
+
+    db.session.add(created_artist)
+    db.session.commit()
+
+    return created_artist
 
 
 @pytest.fixture
