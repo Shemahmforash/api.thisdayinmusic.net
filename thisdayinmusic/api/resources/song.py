@@ -4,35 +4,36 @@ from flask_restful import Resource
 
 from thisdayinmusic.commons.pagination import paginate
 from thisdayinmusic.extensions import ma, db
-from thisdayinmusic.models.artist import Artist
+from thisdayinmusic.models.song import Song
 
 
-class ArtistSchema(ma.ModelSchema):
+class SongSchema(ma.ModelSchema):
     name = fields.fields.Str()
     spotify_id = fields.fields.Str()
+    artist_id = fields.fields.Integer()
 
     class Meta:
-        model = Artist
+        model = Song
         sqla_session = db.session
 
 
-class ArtistResource(Resource):
+class SongResource(Resource):
     """Single object resource
     """
     method_decorators = [jwt_required]
 
-    def get(self, artist_id):
-        schema = ArtistSchema()
-        artist = Artist.query.get_or_404(artist_id)
-        return {"artist": schema.dump(artist).data}
+    def get(self, song_id):
+        schema = SongSchema()
+        song = Song.query.get_or_404(song_id)
+        return {"song": schema.dump(song).data}
 
 
-class ArtistList(Resource):
+class SongList(Resource):
     """Creation and get_all
     """
     method_decorators = [jwt_required]
 
     def get(self):
-        schema = ArtistSchema(many=True)
-        query = Artist.query
+        schema = SongSchema(many=True)
+        query = Song.query
         return paginate(query, schema)

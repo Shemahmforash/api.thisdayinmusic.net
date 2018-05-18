@@ -6,6 +6,7 @@ from thisdayinmusic.app import create_app
 from thisdayinmusic.extensions import db as _db
 from thisdayinmusic.models import User
 from thisdayinmusic.models.artist import Artist
+from thisdayinmusic.models.song import Song
 
 
 @pytest.fixture
@@ -49,6 +50,15 @@ def artist(db):
     db.session.commit()
 
     return created_artist
+
+
+@pytest.fixture
+def song(artist, db):
+    created_song = Song(name='some_name', spotify_id='spotify:some_id', artist_id=artist.id)
+    db.session.add(created_song)
+    db.session.commit()
+
+    return created_song
 
 
 @pytest.fixture
