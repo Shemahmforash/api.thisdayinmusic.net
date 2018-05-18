@@ -1,6 +1,9 @@
+from .artist import Artist
+from .song import Song
 from .user import User
 
-
 __all__ = [
-    'User'
+    'User',
+    'Artist',
+    'Song'
 ]

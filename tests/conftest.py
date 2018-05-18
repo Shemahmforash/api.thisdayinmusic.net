@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import pytest
@@ -6,6 +7,7 @@ from thisdayinmusic.app import create_app
 from thisdayinmusic.extensions import db as _db
 from thisdayinmusic.models import User
 from thisdayinmusic.models.artist import Artist
+from thisdayinmusic.models.event import Event
 from thisdayinmusic.models.song import Song
 
 
@@ -59,6 +61,17 @@ def song(artist, db):
     db.session.commit()
 
     return created_song
+
+
+@pytest.fixture
+def event(artist, song, db):
+    created_event = Event(description='some random description', date=datetime.date.today(), type='Birth',
+                          artist_id=artist.id, song_id=song.id)
+
+    db.session.add(created_event)
+    db.session.commit()
+
+    return created_event
 
 
 @pytest.fixture

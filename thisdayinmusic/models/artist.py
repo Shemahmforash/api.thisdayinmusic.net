@@ -1,4 +1,5 @@
 from thisdayinmusic.extensions import db
+from thisdayinmusic.models.event import Event
 from thisdayinmusic.models.song import Song
 
 
@@ -8,6 +9,7 @@ class Artist(db.Model):
     spotify_id = db.Column(db.String(255), nullable=False)
 
     songs = db.relationship(Song, backref="artist")
+    events = db.relationship(Event, backref="artist")
 
     def __init__(self, **kwargs):
         super(Artist, self).__init__(**kwargs)
