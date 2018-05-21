@@ -1,6 +1,4 @@
-from thisdayinmusic.models import User
-from thisdayinmusic.models.artist import Artist
-from thisdayinmusic.models.song import Song
+from thisdayinmusic.models import User, Artist, Song
 
 
 def user_factory(i):
@@ -20,5 +18,13 @@ def artist_factory(i):
 def song_factory(i):
     return Song(
         name="name{}".format(i),
-        spotify_id="spotify:{}".format(i)
+        spotify_id="spotify:{}".format(i),
+        artist=artist_factory(i)
+    )
+
+
+def event_factory(i):
+    return Song(
+        description="name{}".format(i),
+        song=song_factory(i)
     )

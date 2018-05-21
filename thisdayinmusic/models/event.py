@@ -9,3 +9,9 @@ class Event(db.Model):
 
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
     song_id = db.Column(db.Integer, db.ForeignKey('song.id'))
+
+    def __init__(self, **kwargs):
+        super(Event, self).__init__(**kwargs)
+
+    def __repr__(self):
+        return "<Event {} - {}>".format(self.description, self.song.name)

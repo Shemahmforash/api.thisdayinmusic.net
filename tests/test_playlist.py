@@ -1,13 +1,5 @@
-import datetime
-
-import factory
-from factory import fuzzy
-from pytest_factoryboy import register
-
-from thisdayinmusic.models.playlist import Playlist
-
-
-def test_get_existing_playlist_responds_with_it(client, db, playlist, admin_headers):
+def test_get_existing_playlist_responds_with_it(client, db, playlist, song, admin_headers):
+    playlist.songs.append(song)
     db.session.add(playlist)
     db.session.commit()
 
@@ -17,6 +9,9 @@ def test_get_existing_playlist_responds_with_it(client, db, playlist, admin_head
     data = rep.get_json()['playlist']
 
     assert data['name'] == playlist.name
+    assert len(data['songs']) == 1
+
+    assert data['songs'][0]['name'] == song.name
 
 
 def test_get_unexisting_playlist_responds_with_404(client, db, playlist, admin_headers):
@@ -35,14 +30,8 @@ def test_get_all_playlists(client, db, playlist_factory, admin_headers):
     assert rep.status_code == 200
 
     results = rep.get_json()
+
+    assert len(results['results']) == len(playlists)
+
     for playlist in playlists:
         assert any(u['id'] == playlist.id for u in results['results'])
-
-
-@register
-class PlaylistFactory(factory.Factory):
-    name = factory.Sequence(lambda n: 'some playlist %d' % n)
-    date = fuzzy.FuzzyDate(datetime.date(2008, 1, 1))
-
-    class Meta:
-        model = Playlist

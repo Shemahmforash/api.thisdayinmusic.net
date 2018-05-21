@@ -1,25 +1,3 @@
-import datetime
-
-import factory
-from factory import fuzzy
-from pytest_factoryboy import register
-
-from thisdayinmusic.models.event import Event
-
-
-@register
-class EventFactory(factory.Factory):
-    description = factory.Sequence(lambda n: 'some event %d' % n)
-    date = fuzzy.FuzzyDate(datetime.date(2008, 1, 1))
-    type = 'event'
-
-    artist_id = factory.Sequence(lambda n: n)
-    song_id = factory.Sequence(lambda n: n)
-
-    class Meta:
-        model = Event
-
-
 def test_get_existing_event_responds_with_it(client, db, event, admin_headers):
     db.session.add(event)
     db.session.commit()
@@ -33,6 +11,9 @@ def test_get_existing_event_responds_with_it(client, db, event, admin_headers):
     assert data['description'] == event.description
     assert data['date'] == event.date.strftime("%Y-%m-%d")
     assert data['type'] == event.type
+    assert data['song']['name'] == event.song.name
+    assert data['song']['artist']['name'] == event.artist.name
+    assert data['song']['artist']['name'] == event.song.artist.name
 
 
 def test_get_unexisting_event_responds_with_404(client, db, event, admin_headers):
@@ -51,5 +32,8 @@ def test_get_all_events(client, db, event_factory, admin_headers):
     assert rep.status_code == 200
 
     results = rep.get_json()
+
+    assert len(results['results']) == len(events)
+
     for event in events:
         assert any(u['id'] == event.id for u in results['results'])

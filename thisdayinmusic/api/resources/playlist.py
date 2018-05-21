@@ -11,6 +11,8 @@ class PlaylistSchema(ma.ModelSchema):
     name = fields.fields.Str()
     date = fields.fields.Date()
 
+    songs = ma.Nested('SongSchema', many=True, exclude=('playlists',))
+
     class Meta:
         model = Playlist
         sqla_session = db.session

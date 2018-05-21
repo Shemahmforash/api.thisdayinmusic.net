@@ -17,8 +17,6 @@ class ArtistSchema(ma.ModelSchema):
 
 
 class ArtistResource(Resource):
-    """Single object resource
-    """
     method_decorators = [jwt_required]
 
     def get(self, artist_id):
@@ -28,8 +26,6 @@ class ArtistResource(Resource):
 
 
 class ArtistList(Resource):
-    """Creation and get_all
-    """
     method_decorators = [jwt_required]
 
     def get(self):

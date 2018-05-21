@@ -2,6 +2,8 @@ from flask_jwt_extended import jwt_required
 from flask_marshmallow import fields
 from flask_restful import Resource
 
+from thisdayinmusic.api.resources.artist import ArtistSchema
+from thisdayinmusic.api.resources.song import SongSchema
 from thisdayinmusic.commons.pagination import paginate
 from thisdayinmusic.extensions import ma, db
 from thisdayinmusic.models.event import Event
@@ -12,14 +14,15 @@ class EventSchema(ma.ModelSchema):
     date = fields.fields.Date()
     type = fields.fields.Str()
 
+    song = ma.Nested(SongSchema)
+    artist = ma.Nested(ArtistSchema)
+
     class Meta:
         model = Event
         sqla_session = db.session
 
 
 class EventResource(Resource):
-    """Single object resource
-    """
     method_decorators = [jwt_required]
 
     def get(self, event_id):

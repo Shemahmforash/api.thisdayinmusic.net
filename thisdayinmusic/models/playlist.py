@@ -16,3 +16,9 @@ class Playlist(db.Model):
 
     songs = relationship("Song",
                          secondary=association_table)
+
+    def __init__(self, **kwargs):
+        super(Playlist, self).__init__(**kwargs)
+
+    def __repr__(self):
+        return "<Playlist {} - {} - {}>".format(self.name, self.date, len(self.songs))

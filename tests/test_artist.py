@@ -1,18 +1,3 @@
-import factory
-from pytest_factoryboy import register
-
-from thisdayinmusic.models.artist import Artist
-
-
-@register
-class ArtistFactory(factory.Factory):
-    name = factory.Sequence(lambda n: 'artist%d' % n)
-    spotify_id = factory.Sequence(lambda n: 'spotify:%d' % n)
-
-    class Meta:
-        model = Artist
-
-
 def test_get_unexisting_artist_responds_with_404(client, db, artist, admin_headers):
     # test 404
     rep = client.get("/api/v1/artists/100000", headers=admin_headers)
@@ -43,5 +28,8 @@ def test_get_all_artists(client, db, artist_factory, admin_headers):
     assert rep.status_code == 200
 
     results = rep.get_json()
+
+    assert len(results['results']) == len(artists)
+
     for artist in artists:
         assert any(u['id'] == artist.id for u in results['results'])

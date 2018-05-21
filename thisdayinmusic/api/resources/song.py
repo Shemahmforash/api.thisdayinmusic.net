@@ -2,6 +2,7 @@ from flask_jwt_extended import jwt_required
 from flask_marshmallow import fields
 from flask_restful import Resource
 
+from thisdayinmusic.api.resources.artist import ArtistSchema
 from thisdayinmusic.commons.pagination import paginate
 from thisdayinmusic.extensions import ma, db
 from thisdayinmusic.models.song import Song
@@ -10,7 +11,8 @@ from thisdayinmusic.models.song import Song
 class SongSchema(ma.ModelSchema):
     name = fields.fields.Str()
     spotify_id = fields.fields.Str()
-    artist_id = fields.fields.Integer()
+
+    artist = ma.Nested(ArtistSchema)
 
     class Meta:
         model = Song
@@ -18,8 +20,6 @@ class SongSchema(ma.ModelSchema):
 
 
 class SongResource(Resource):
-    """Single object resource
-    """
     method_decorators = [jwt_required]
 
     def get(self, song_id):
@@ -29,8 +29,6 @@ class SongResource(Resource):
 
 
 class SongList(Resource):
-    """Creation and get_all
-    """
     method_decorators = [jwt_required]
 
     def get(self):
