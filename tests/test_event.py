@@ -13,7 +13,8 @@ class EventFactory(factory.Factory):
     date = fuzzy.FuzzyDate(datetime.date(2008, 1, 1))
     type = 'event'
 
-    # artist_id = factory.Sequence(lambda n: n)
+    artist_id = factory.Sequence(lambda n: n)
+    song_id = factory.Sequence(lambda n: n)
 
     class Meta:
         model = Event

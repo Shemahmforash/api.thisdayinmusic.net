@@ -4,6 +4,7 @@ from flask_restful import Api
 from thisdayinmusic.api.resources import UserResource, UserList
 from thisdayinmusic.api.resources.artist import ArtistResource, ArtistList
 from thisdayinmusic.api.resources.event import EventResource, EventList
+from thisdayinmusic.api.resources.playlist import PlaylistResource, PlaylistList
 from thisdayinmusic.api.resources.song import SongResource, SongList
 
 blueprint = Blueprint('api', __name__, url_prefix='/api/v1')
@@ -20,3 +21,6 @@ api.add_resource(ArtistList, '/artists')
 
 api.add_resource(EventResource, '/events/<int:event_id>')
 api.add_resource(EventList, '/events')
+
+api.add_resource(PlaylistResource, '/playlists/<int:playlist_id>')
+api.add_resource(PlaylistList, '/playlists')
