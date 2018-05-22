@@ -11,6 +11,9 @@ class ArtistSchema(ma.ModelSchema):
     name = fields.fields.Str()
     spotify_id = fields.fields.Str()
 
+    songs = ma.Nested('SongSchema', many=True, exclude=('artist', 'events'))
+    events = ma.Nested('EventSchema', many=True, exclude=('artist', 'song'))
+
     class Meta:
         model = Artist
         sqla_session = db.session
