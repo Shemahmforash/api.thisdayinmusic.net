@@ -14,6 +14,7 @@ def test_get_existing_event_responds_with_it(client, db, event, admin_headers):
     assert data['song']['name'] == event.song.name
     assert data['song']['artist']['name'] == event.artist.name
     assert data['song']['artist']['name'] == event.song.artist.name
+    assert data['artist']['name'] == event.artist.name
 
 
 def test_get_unexisting_event_responds_with_404(client, db, event, admin_headers):

@@ -4,7 +4,9 @@ def test_get_unexisting_song_responds_with_404(client, db, song, admin_headers):
     assert rep.status_code == 404
 
 
-def test_get_existing_song_responds_with_it(client, db, song, admin_headers):
+def test_get_existing_song_responds_with_it(client, db, event, admin_headers):
+    song = event.song
+
     db.session.add(song)
     db.session.commit()
 
@@ -16,7 +18,18 @@ def test_get_existing_song_responds_with_it(client, db, song, admin_headers):
 
     assert data['name'] == song.name
     assert data['spotify_id'] == song.spotify_id
-    assert data['artist']['name'] == song.artist.name
+    assert data['artist'] == {
+        'name': song.artist.name,
+        'spotify_id': song.artist.spotify_id,
+        'id': song.artist.id
+    }
+
+    assert data['events'][0] == {
+        'id': event.id,
+        'description': event.description,
+        'type': event.type,
+        'date': event.date.strftime("%Y-%m-%d"),
+    }
 
 
 def test_get_all_songs(client, db, song_factory, admin_headers):

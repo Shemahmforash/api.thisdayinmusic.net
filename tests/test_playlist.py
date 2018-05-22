@@ -11,7 +11,17 @@ def test_get_existing_playlist_responds_with_it(client, db, playlist, song, admi
     assert data['name'] == playlist.name
     assert len(data['songs']) == 1
 
-    assert data['songs'][0]['name'] == song.name
+    assert data['songs'][0] == {
+        'id': song.id,
+        'name': song.name,
+        'spotify_id': song.spotify_id,
+        'artist': {
+            'id': song.artist.id,
+            'name': song.artist.name,
+            'spotify_id': song.artist.spotify_id
+        },
+        'events': []
+    }
 
 
 def test_get_unexisting_playlist_responds_with_404(client, db, playlist, admin_headers):

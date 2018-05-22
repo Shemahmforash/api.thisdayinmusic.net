@@ -12,7 +12,7 @@ class SongSchema(ma.ModelSchema):
     spotify_id = fields.fields.Str()
 
     artist = ma.Nested('ArtistSchema', exclude=('songs', 'events'))
-    events = ma.Nested('EventSchema', many=True, exclude=('song',))
+    events = ma.Nested('EventSchema', many=True, exclude=('song', 'artist'))
 
     class Meta:
         model = Song
