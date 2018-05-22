@@ -2,6 +2,8 @@ import datetime
 
 import faker
 
+from thisdayinmusic.commons.pagination import DEFAULT_PAGE_SIZE
+
 
 def test_get_existing_event_responds_with_it(client, db, event, admin_headers):
     db.session.add(event)
@@ -29,7 +31,8 @@ def test_get_unexisting_event_responds_with_404(client, db, event, admin_headers
 
 
 def test_get_all_events(client, db, event_factory, admin_headers_without_content_type):
-    events = event_factory.create_batch(30)
+    total_event_number = DEFAULT_PAGE_SIZE
+    events = event_factory.create_batch(total_event_number)
 
     db.session.add_all(events)
     db.session.commit()
@@ -39,7 +42,7 @@ def test_get_all_events(client, db, event_factory, admin_headers_without_content
 
     results = rep.get_json()
 
-    assert len(results['results']) == len(events)
+    assert results['total'] == total_event_number
 
     for event in events:
         assert any(u['id'] == event.id for u in results['results'])
