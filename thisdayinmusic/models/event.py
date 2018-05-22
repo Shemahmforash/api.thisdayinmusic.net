@@ -14,4 +14,4 @@ class Event(db.Model):
         super(Event, self).__init__(**kwargs)
 
     def __repr__(self):
-        return "<Event {} - {}>".format(self.description, self.song.name)
+        return "<Event {} - {} - {}>".format(self.date, self.description, self.song.name)

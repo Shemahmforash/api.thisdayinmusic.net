@@ -107,6 +107,13 @@ def admin_headers(admin_user, client):
     }
 
 
+@pytest.fixture
+def admin_headers_without_content_type(admin_headers):
+    return {
+        'authorization': admin_headers['authorization']
+    }
+
+
 @register
 class ArtistFactory(factory.Factory):
     name = factory.Faker('name')
