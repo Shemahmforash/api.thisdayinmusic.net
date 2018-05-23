@@ -17,6 +17,7 @@ marshmallow-sqlalchemy = "*"
 python-dotenv = "*"
 passlib = "*"
 tox = "*"
+mysqlclient = "*"
 
 
 [dev-packages]
