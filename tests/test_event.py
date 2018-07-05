@@ -63,7 +63,6 @@ def test_filter_events_by_date(client, db, event_factory, admin_headers_without_
     db.session.commit()
 
     url = '/api/v1/events?month={}&day={}'.format(some_date.month, some_date.day)
-    print('url', url)
 
     rep = client.get(url, headers=admin_headers_without_content_type)
     assert rep.status_code == 200
