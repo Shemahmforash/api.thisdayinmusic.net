@@ -2,6 +2,7 @@ import click
 from flask.cli import FlaskGroup
 
 from thisdayinmusic.app import create_app
+from thisdayinmusic.config import ADMIN_PASSWORD
 
 
 def create_thisdayinmusic(info):
@@ -28,7 +29,7 @@ def init():
     user = User(
         username='admin',
         email='admin@mail.com',
-        password='admin',
+        password=ADMIN_PASSWORD,
         active=True
     )
     db.session.add(user)
