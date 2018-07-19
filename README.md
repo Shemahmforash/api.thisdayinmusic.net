@@ -3,17 +3,7 @@ A restful api built with flask that provides a list of events that happened on e
 
 ## Running
 
-Make sure you have pipenv installed:
-
-```sh
-pip install pipenv
-```
-
-And then install all dependencies required (including dev ones):
-
-```sh
-pipenv install --dev
-```
+Make sure you have [Docker](https://www.docker.com/) installed first.
 
 To run the app you first must create a .env file:
 
@@ -23,25 +13,19 @@ cp .env.example .env
 
 Edit it and set the required values.
 
-After that, you should create the database and run the migration scripts:
+After that, can run the app with:
 
 ```
-pipenv run thisdayinmusic init
-pipenv run thisdayinmusic db
-```
-
-Now to run the app:
-```
-pipenv run thisdayinmusic run
+make
 ```
 
 You can now point your browser to http://127.0.0.1:5000 to use the app.
 
 ## Testing
 
-To run the tests (make sure you have installed the dev dependencies above):
+To run the tests:
 ```bash
-pipenv run pytest
+make test
 ```
 
 ## Authentication

@@ -17,6 +17,7 @@ mysqlclient = "*"
 thisdayinmusic = {editable = true, path = "."}
 
 [dev-packages]
+pytest = "*"
 pytest-runner = "*"
 pytest-flask = "*"
 pytest-factoryboy = "*"

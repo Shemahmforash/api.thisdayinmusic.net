@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: thisdayinmusic db
+    command: thisdayinmusic run --host=0.0.0.0 --port=5000
+    volumes:
+      - .:/code
+    ports:
+      - "5000:5000"
