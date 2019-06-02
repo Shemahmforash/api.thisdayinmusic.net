@@ -1,0 +1,18 @@
+dist: xenial   # required for Python >= 3.7
+
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+addons:
+    firefox: "latest"
+python:
+    - "3.7"
+
+install: make
+
+script:
+    - make test
