@@ -145,11 +145,11 @@
         },
         "marshmallow-sqlalchemy": {
             "hashes": [
-                "sha256:32ff19350a8892b3e8dc954eeeac796576bb89356512f9e1ccd33da63f856930",
-                "sha256:755b16b64c0273fd8083dbe1e938dff0d49359c76d6238898c9082e3fc55368d"
+                "sha256:24d85d85262dad2efdfc26ec4064e5914e6958312310cb9018d3a19247a1f763",
+                "sha256:30f27173a141dd8d532983d1f97978fbb7be6ef278b337b3bfd0401659e8bcb4"
             ],
             "index": "pypi",
-            "version": "==0.14.0"
+            "version": "==0.16.3"
         },
         "mysqlclient": {
             "hashes": [
