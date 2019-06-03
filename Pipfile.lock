@@ -358,10 +358,10 @@
         },
         "pytest-factoryboy": {
             "hashes": [
-                "sha256:ad438d191d2b2a0f26956d437c1963875db573147a84ffd85d7bbeaefae22458"
+                "sha256:b1bdb7da9078eb84a6cb9b7b93dda9cfb575488df04f91b1ab4d20a1dfce8faf"
             ],
             "index": "pypi",
-            "version": "==2.0.1"
+            "version": "==2.0.2"
         },
         "pytest-flask": {
             "hashes": [
