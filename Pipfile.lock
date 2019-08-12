@@ -138,10 +138,10 @@
         },
         "marshmallow": {
             "hashes": [
-                "sha256:9cedfc5b6f568d57e8a2cf3d293fbd81b05e5ef557854008d03e25660a39ccfd",
-                "sha256:a4d99922116a76e5abd8f997ec0519086e24814b7e1e1344bebe2a312ba50235"
+                "sha256:6f027308cddb25b74f8245b833a355e65b21b362f38773b40325ff9b5da6c959",
+                "sha256:ebeb2b3b41580ed89fe1e695b567bd8509a62ecb85fe89e33a8d7fa486badd41"
             ],
-            "version": "==2.19.5"
+            "version": "==2.20.0"
         },
         "marshmallow-sqlalchemy": {
             "hashes": [
@@ -153,12 +153,10 @@
         },
         "mysqlclient": {
             "hashes": [
-                "sha256:425e733b05e359a714d6007c0fc44582be66b63e5a3df0a50949274ae16f4bc6",
-                "sha256:62e4770b6a797b9416bcf70488365b7d6b9c9066878108499c559293bb464380",
-                "sha256:f257d250f2675d0ef99bd318906f3cfc05cef4a2f385ea695ff32a3f04b9f9a7"
+                "sha256:9c737cc55a5dc8dd3583a942d5a9b21be58d16f00f5fefca4e575e7d9682e98c"
             ],
             "index": "pypi",
-            "version": "==1.4.2.post1"
+            "version": "==1.4.4"
         },
         "passlib": {
             "hashes": [
