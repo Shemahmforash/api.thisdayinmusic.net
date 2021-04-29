@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: python-dotenv
+    versions:
+    - 0.15.0
+    - 0.16.0
+  - dependency-name: flask-jwt-extended
+    versions:
+    - 3.25.0
+    - 4.0.2
+  - dependency-name: marshmallow-sqlalchemy
+    versions:
+    - 0.24.1
+    - 0.24.2
+  - dependency-name: pytest
+    versions:
+    - 6.2.2
+  - dependency-name: flask-sqlalchemy
+    versions:
+    - 2.4.4
+  - dependency-name: pytest-runner
+    versions:
+    - "5.2"
